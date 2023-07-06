@@ -1,0 +1,24 @@
+
+
+
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int n = nums.length;
+        int count = 0;
+        int sum = 0;
+       
+        HashMap<Integer, Integer> x = new HashMap<>();
+         x.put(0,1);
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            int diff=sum%k;
+
+            if (diff<0)
+                diff+=k;
+            if (x.containsKey(diff))
+                count += x.get(diff);
+            x.put(diff, x.getOrDefault(diff, 0) + 1);
+        }
+        return count;
+    }
+}

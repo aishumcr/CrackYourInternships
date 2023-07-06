@@ -1,0 +1,53 @@
+//Remove Duplicates from Sorted Array.
+//o(3*n) 
+// first add unique elements to ArrayList and change into another number .after add those elements to nums again.
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        ArrayList<Integer> arr=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            if(!arr.contains(nums[i])){
+                arr.add(nums[i]);
+                nums[i]=-101;   
+            }
+        }
+        int k=arr.size();
+         for(int i=0;i<nums.length;i++){
+            if(nums[i]!=-101){
+                arr.add(nums[i]);   
+            }
+        }
+         for(int i=0;i<arr.size();i++){
+           nums[i]=arr.get(i);
+        }
+        return k;
+        
+    }
+}
+//using 2-pointer approach
+//we keep j for unique elements and i for moving we just manipulate nums[j] and we wont change nums[i] we just keep moving it.
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int j=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]!=nums[i-1]){
+                nums[j]=nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}
+
+
+//using slow fast technique.
+	def removeDuplicates(self, nums: List[int]) -> int:
+		slow, fast = 0, 1
+		while fast in range(len(nums)):
+			if nums[slow] == nums[fast]:
+				fast += 1
+			else:
+				nums[slow+1] = nums[fast]
+				fast += 1
+				slow += 1
+
+		return slow + 1

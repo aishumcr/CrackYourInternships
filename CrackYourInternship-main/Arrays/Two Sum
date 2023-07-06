@@ -1,0 +1,42 @@
+//sorting and using 2 pointer approach . if value>target decrease p2.<target increase p1.
+//o(n),o(n)
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        A=nums.copy()
+        A=sorted(A)
+        p1=0
+        p2=len(A)-1
+        l=[]
+        while(p1<p2):
+            if(A[p1]+A[p2]==target):
+                id1=nums.index(A[p1])
+                nums[id1]=-1
+                id2=nums.index(A[p2])
+                return id1,id2
+            elif(A[p1]+A[p2]>target):
+                p2-=1
+            else:
+                p1+=1
+        return l    
+// we can use hashmap to store element and index .for each elemnt check target-nums[i] present in hashmap or not.if present get index and return i,index.
+//else put number and index to hashmap.
+//o(n),o(n)
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> mapp=new HashMap<>();
+       for(int i=0;i<nums.length;i++){
+           if(mapp.containsKey(target-nums[i])){
+               int ind=mapp.get(target-nums[i]);
+               return new int[]{ind,i};
+           }
+           else{
+               mapp.put(nums[i],i);
+           }
+       }
+       return new int[]{0,0};
+    }
+}
+
+// 3.Brute force using 2 loops and find.

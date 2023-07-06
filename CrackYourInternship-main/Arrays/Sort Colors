@@ -1,0 +1,20 @@
+// 0->Red 1->White 2->Blue
+//sort the colors without using library sort function.
+//o(n),o(3)
+
+class Solution {
+    public void sortColors(int[] nums) {
+        int[] c=new int[3];
+        for(int i=0;i<nums.length;i++){
+            c[nums[i]]+=1;
+        }
+        int k=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<c[i];j++){
+                nums[k]=i;
+                k++;
+            }
+        }
+        
+    }
+}

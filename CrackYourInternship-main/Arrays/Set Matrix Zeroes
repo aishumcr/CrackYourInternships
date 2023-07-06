@@ -1,0 +1,89 @@
+//Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+//2.Better Approach
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+       int r=matrix.length;
+       int c=matrix[0].length;
+
+//finding column and rows which contain zeroes and storing it in arrays of rows and columns.Making the index at row and column matrix as 1.
+       int rz[]=new int[r];
+       int cz[]=new int[c];
+       for(int i=0;i<r;i++){
+           for(int j=0;j<c;j++){
+               if(matrix[i][j]==0){
+                   rz[i]=1;
+                   cz[j]=1;
+               }
+           }
+       }
+//changing the rows and columns which we get 1 to zeroes.
+       for(int i=0;i<r;i++){
+           for(int j=0;j<c;j++){
+               if(rz[i]==1 || cz[j]==1){
+                   matrix[i][j]=0;
+               }
+           }
+       }
+        
+    }
+}
+
+complexity: o(m*n)->time ,o(m+n)->space
+
+
+
+# 1. Brute force Approach
+Complexity
+Time complexity:O((NM)(N + M)) + O(N*M), where N = no. of rows in the matrix and M = no. of columns in the matrix.
+Space complexity:O(1)
+
+# Code
+
+class Solution {
+    
+    // making rows negative excluding 0's
+    public static void makeRow(int matrix[][],int n,int m,int i){
+        for(int j=0;j<n;j++){
+            if(matrix[i][j]!=0){
+                matrix[i][j] = -1;
+            }
+            
+        }
+    }
+    
+      // making cols negative excluding 0's
+    public static void makeCol(int matrix[][],int n,int m,int j){
+        for(int i=0;i<m;i++){
+            if(matrix[i][j]!=0){
+                matrix[i][j] = -1;
+            }
+        }
+    }
+    
+    // main function
+    public void setZeroes(int[][] matrix) {
+        int n = matrix[0].length;
+        int m = matrix.length;
+       
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    makeRow(matrix,n,m,i);
+                    makeCol(matrix,n,m,j);
+                }
+            }
+        }
+        
+        // itterate through the matrix and mark 0's where negative is present 
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]== -1){
+                    matrix[i][j]=0;
+                }
+                
+            }
+        }
+    }
+}
