@@ -1,0 +1,24 @@
+// here we should continue squaring digits of a  number till the value of n is 1 or we  dont get one.
+//so we dont know whether we get 1 or not .so we should store all numbers generated if same numbers are repeated we will stop. or if n==1.
+
+class Solution {
+    public int nextNumber(int n){
+        int newNumber=0;
+        while(n!=0){
+            int num=n%10;
+            newNumber+=num*num;
+            n=n/10;
+        }
+        return newNumber;
+    }
+    public boolean isHappy(int n) {
+        HashSet<Integer> hs=new HashSet<>();
+        while(n!=0 && !hs.contains(n)){
+            hs.add(n);
+            n=nextNumber(n);
+        }
+        return n==1;
+
+
+    }
+}
