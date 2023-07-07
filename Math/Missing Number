@@ -1,0 +1,19 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        int maxv=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(maxv<nums[i]){
+                maxv=nums[i];
+            }
+        }
+        int xorv=0;
+        for(int i=0;i<nums.length;i++){
+            xorv=xorv^nums[i];
+        }
+        for(int i=0;i<=maxv;i++){
+            xorv=xorv^i;
+        }
+        if(maxv+1==nums.length) return maxv+1;
+        return xorv;
+    }
+}
