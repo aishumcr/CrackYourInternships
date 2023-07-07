@@ -1,0 +1,23 @@
+//here we just subtract order pairs and add differences to set.
+//set should contains only 2 different numbers because all lengths are same and length of diagonals.
+//it should not contains 0 as it represent same point.
+
+class Solution {
+    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+        HashSet<Integer> st=new HashSet<>();
+      int a=(int)(Math.pow((p1[0]-p2[0]),2)+Math.pow((p1[1]-p2[1]),2));
+      int b=(int)(Math.pow((p1[0]-p3[0]),2)+Math.pow((p1[1]-p3[1]),2));
+      int c=(int)(Math.pow((p1[0]-p4[0]),2)+Math.pow((p1[1]-p4[1]),2));
+      int d=(int)(Math.pow((p2[0]-p4[0]),2)+Math.pow((p2[1]-p4[1]),2));
+      int e=(int)(Math.pow((p3[0]-p2[0]),2)+Math.pow((p3[1]-p2[1]),2));
+      int f=(int)(Math.pow((p3[0]-p4[0]),2)+Math.pow((p3[1]-p4[1]),2));   
+      st.add(a);
+      st.add(b);  
+      st.add(c);
+      st.add(d); 
+      st.add(e);
+      st.add(f); 
+      System.out.println(st); 
+      return (!st.contains(0) && st.size()==2); 
+    }
+}
