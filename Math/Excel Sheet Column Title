@@ -1,0 +1,17 @@
+//0 -> A
+25 -> Z
+26 -> BA
+typically but in excel A->1 so in order to find we are doing --;
+// AA we are doing modulo and getting 1st number letter and storing in ans. we are appending it back bcz no need of reversing a number.
+//o(n).
+class Solution {
+    public String convertToTitle(int columnNumber) {
+       String ans="";
+       while(columnNumber>0){
+           columnNumber--;
+           ans=(char)('A'+(columnNumber%26))+ans;
+           columnNumber/=26;
+       }
+       return ans;
+    }
+}
