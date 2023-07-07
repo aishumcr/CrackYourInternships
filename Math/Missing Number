@@ -1,3 +1,5 @@
+// here we xor array values and 0-maximum  number. if max value == length(nums)-1 we return length because (0,1)
+// wee should return 2 . as 0,1 both are present.
 class Solution {
     public int missingNumber(int[] nums) {
         int maxv=nums[0];
