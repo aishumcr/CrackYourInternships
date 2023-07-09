@@ -15,3 +15,24 @@ class Solution {
         return idx;
     }
 }
+
+//Approach 2 with 2 pointer technique.
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int idx=0,v=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==val){
+                idx++;
+            }
+            else if(idx>0){
+                nums[i-idx]=nums[i];
+                nums[i]=val;
+                v++;
+            }
+            else{
+                v++;
+            }
+        }
+        return v;
+    }
+}
