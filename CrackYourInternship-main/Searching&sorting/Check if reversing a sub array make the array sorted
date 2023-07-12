@@ -1,0 +1,14 @@
+/** Given an array of n distinct integers. The task is to check whether reversing any one sub-array can make the array sorted or not. If the array is already sorted or can be made sorted by reversing any one subarray, print “Yes“, else print “No“.
+
+Examples: 
+
+Input : arr [] = {1, 2, 5, 4, 3}
+Output : Yes
+By reversing the subarray {5, 4, 3}, the array will be sorted.
+
+Input : arr [] = { 1, 2, 4, 5, 3 }
+Output : No **/
+
+Solutions :: 
+ 1.compare woth sorted array and find starting and ending index and reverse the portion and again check.
+ 2.check arr[i+1]-arr[i]==1 and find where this condition breaks and from there arr[i+1]-arr[i]==-1 is true then true else false.
