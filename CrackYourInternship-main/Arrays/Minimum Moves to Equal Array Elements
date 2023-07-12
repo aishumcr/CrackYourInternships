@@ -1,5 +1,5 @@
 //convert all elements of an list to same elements.
-// we are doing by converting it to small number. we finf minimum and find diff b/w every number and minimum.
+// we are doing by converting it to small number. we find minimum and find diff b/w every number and minimum.
 // we can do that taking maximum number also but 1,1,10000. using min number we get less moves than maximum.
 //o(2*n),o(1)
 
