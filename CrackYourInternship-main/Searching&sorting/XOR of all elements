@@ -1,0 +1,38 @@
+/** Given a list A having N positive elements. The task to create another list such as ith element is XOR of all elements of  A except A[i].
+
+Example 1:
+
+Input:
+A = [2, 1, 5, 9]
+Output:
+13 14 10 6
+Explanation:
+At first position 1^5^9 = 13
+At second position 2^5^9 = 14
+At third position 2^1^9 = 10
+At last position 2^1^5 = 6  **/
+
+class Solution{
+    static ArrayList<Integer> getXor(ArrayList<Integer> A,int N){
+        int[] px=new int[N];
+        int[] sx=new int[N];
+        px[0]=0;
+        sx[N-1]=0;
+        int xorv=0;
+        for(int i=1;i<N;i++){
+            xorv^=A.get(i-1);
+            px[i]=xorv;
+        }
+        xorv=0;
+        for(int i=N-2;i>=0;i--){
+            xorv^=A.get(i+1);
+            sx[i]=xorv;
+        }
+        ArrayList<Integer> res=new ArrayList<>();
+        for(int i=0;i<N;i++){
+           res.add(px[i]^sx[i]);
+        }
+        return res;
+        // code here
+    }
+}
