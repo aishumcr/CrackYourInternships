@@ -1,0 +1,27 @@
+/**  Given an array Arr[] of size L and a number N, you need to write a program to find if there exists a pair of elements in the array whose difference is N.
+
+Example 1:
+
+Input:
+L = 6, N = 78
+arr[] = {5, 20, 3, 2, 5, 80}
+Output: 1
+Explanation: (2, 80) have difference of 78. **/
+
+Code :
+ class Solution
+{
+   
+    public boolean findPair(int arr[], int size, int n)
+    {
+        Arrays.sort(arr);
+        int a=0,b=1;
+        while(a<size && b<size){
+           if(a!=b && arr[b]-arr[a]==n) return true;
+           else if(arr[b]-arr[a]<n) b++;
+           else a++;
+        }
+        return false;
+        //code here.
+    }
+}
