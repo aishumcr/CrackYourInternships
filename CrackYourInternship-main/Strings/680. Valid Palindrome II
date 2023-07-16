@@ -1,0 +1,39 @@
+// Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+
+
+Example 1:
+
+Input: s = "aba"
+Output: true
+Example 2:
+
+Input: s = "abca"
+Output: true
+Explanation: You could delete the character 'c'. //
+
+Solution :  we just traversed througg 2 pointers and find whether they are equal or not.
+
+
+class Solution {
+    private boolean ispalin(String s,int i,int j){
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j)){
+                  return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    public boolean validPalindrome(String s) {
+        int p1=0,p2=s.length()-1;
+        while(p1<p2){
+            if(s.charAt(p1)!=s.charAt(p2)){
+                  return ispalin(s,p1+1,p2) || ispalin(s,p1,p2-1);
+            }
+            p1++;
+            p2--;
+        }
+        return true;
+    }
+}
