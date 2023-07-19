@@ -26,7 +26,7 @@ After we found pattern we start j from start and remove characters from start wh
 
 
 
-String ans="";
+       String ans="";
         HashMap<Character,Integer> map2=new HashMap<>();
         for(int i=0;i<p.length();i++){
             char ch=p.charAt(i);
