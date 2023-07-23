@@ -1,0 +1,55 @@
+Given a string s which represents an expression, evaluate this expression and return its value. 
+
+The integer division should truncate toward zero.
+
+You may assume that the given expression is always valid. All intermediate results will be in the range of [-231, 231 - 1].
+
+Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval().
+
+ 
+
+Example 1:
+
+Input: s = "3+2*2"
+Output: 7
+
+solution :: here we make first number always positive if it is digit and no - sign .so to keep track of sign we use one variable.
+ based on that character (sign) we push the value as num,-num.
+
+
+class Solution {
+    public int calculate(String s) {
+        char pre_op='+';
+        int num=0;
+        s+="+";
+        Stack<Integer> st=new Stack<>();
+        for(char ch:s.toCharArray()){
+            if(Character.isDigit(ch)){
+                num=num*10+ch-'0';
+            }
+            else if(ch==' ') continue;
+            else{
+            if(pre_op=='+'){
+                st.push(num);
+            }
+            else if(pre_op=='-') st.push(-num);
+            else if(pre_op=='*'){
+                int x=st.pop();
+                st.push(x*num);
+            }
+            else if(pre_op=='/'){
+            int x=st.pop();
+            st.push(x/num);
+        }
+                num=0;
+                pre_op=ch;
+            } 
+        
+        }
+        int sum=0;
+        while(!st.isEmpty())
+            sum+=st.pop(); 
+        return sum;
+        
+    }
+}
