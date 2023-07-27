@@ -1,0 +1,38 @@
+Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (push, top, pop, and empty).
+
+Implement the MyStack class:
+
+void push(int x) Pushes element x to the top of the stack.
+int pop() Removes the element on the top of the stack and returns it.
+int top() Returns the element on the top of the stack.
+boolean empty() Returns true if the stack is empty, false otherwise.
+
+SOLUTION :: 
+
+
+class MyStack {
+   List<Integer> stack;
+   int size=0; 
+    public MyStack() {
+        stack=new ArrayList<>();
+    }
+    
+    public void push(int x) {
+        stack.add(x);
+        size++;
+    }
+    
+    public int pop() {
+        int x=stack.remove(size-1);
+        size--;
+        return x;
+    }
+    
+    public int top() {
+         return stack.get(size-1);
+    }
+    
+    public boolean empty() {
+        return size==0;
+    }
+}
