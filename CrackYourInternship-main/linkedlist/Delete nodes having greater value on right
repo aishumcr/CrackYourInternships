@@ -1,0 +1,41 @@
+class Solution
+{
+    private Node reverse(Node head){
+        Node prev=null;
+        Node current=head;
+        while(current!=null){
+            Node node=current.next;
+            current.next=prev;
+            prev=current;
+            current=node;
+            
+        }
+        return prev;
+    }
+        
+    Node compute(Node head)
+    {
+        if(head==null) return null;
+        if(head.next==null) return head;
+        head=reverse(head);
+        Node current=head,prev=head;
+        int ma=head.data;
+        head=head.next;
+        while(head!=null){
+            if(head.data>=ma){
+                ma=head.data;
+                prev=head;
+                head=head.next;
+            }
+            else{
+                prev.next=head.next;
+                head=prev.next;
+            }
+        }
+        head=reverse(current);
+        return head;
+       
+      
+    }
+}
+  
