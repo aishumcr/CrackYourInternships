@@ -1,0 +1,35 @@
+8
+1 2 2 1 2 0 2 2
+Your Output: 
+0 1 1 2 2 2 2 2
+Expected Output: 
+0 1 1 2 2 2 2 2
+
+
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        int[] arr=new int[3];
+        Node node=head;
+        Node dummy=node;
+        Node tmp=head;
+        while(tmp!=null){
+            arr[tmp.data]++;
+            tmp=tmp.next;
+        }
+        int i=0;
+       
+        while(node!=null){
+            if(arr[i]==0) i++;
+            else{
+                node.data=i;
+                --arr[i];
+                node=node.next;
+            }
+        }
+        return dummy;
+        // add your code here
+    }
+}
