@@ -1,0 +1,26 @@
+import java.util.*;
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        ListNode c = head;
+        ListNode p = null;
+        while (c != null) {
+            ListNode temp = new ListNode(c.val);
+            temp.next = p;
+            p = temp;
+            c = c.next;
+        }
+        while (head != null && p != null) {
+            if (head.val != p.val) {
+                return false;
+            }
+            head = head.next;
+            p = p.next;
+        }
+        return true;
+    }
+}
+
