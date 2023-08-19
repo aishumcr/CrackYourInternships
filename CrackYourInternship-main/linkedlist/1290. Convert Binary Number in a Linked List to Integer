@@ -1,0 +1,27 @@
+Input: head = [1,0,1]
+Output: 5
+Explanation: (101) in base 2 = (5) in base 10
+
+
+ Stack<Integer>st=new Stack<>();
+        int i=0;
+        int sum=0;
+        while(head!=null){
+            st.push(head.val);
+            head=head.next;
+        }
+        while(!st.isEmpty()){
+            sum+=(st.pop())*(1<<i);
+            i++;
+        }
+        return sum;
+
+2nd solution::
+ int ans=0;
+        while(head!=null){
+            //ans=ans*2;
+            ans=2*ans+head.val;
+            head=head.next;
+        }
+        return ans;
+    }
