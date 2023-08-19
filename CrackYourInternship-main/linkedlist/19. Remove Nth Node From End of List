@@ -1,0 +1,28 @@
+class Solution {
+    private int size(ListNode head){
+        int c=0;
+        while(head!=null){
+            c+=1;
+            head=head.next;
+        }
+        return c;
+    }
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head==null) return null;
+        if(head.next==null && n==1) return null;
+        int s=size(head);
+        if(n>s) return null;
+        ListNode tmp=head;
+//deleting firstNode. That is when s==n we should delete first node .i..e lastnode from end is first node.
+        if(s==n){
+            head=head.next;
+            return head;
+        }
+        while(s-n-1!=0) {
+            tmp=tmp.next;
+            s--;
+        }
+        tmp.next=tmp.next.next;
+        return head;
+    }
+}
