@@ -1,0 +1,42 @@
+class Solution {
+    private ListNode rev(ListNode h1){
+        ListNode prev=null;
+        ListNode current=h1;
+        while(current!=null){
+            ListNode node =current.next;;
+            current.next=prev;
+            prev=current;
+            current=node;
+        }
+        return prev;
+    }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        l1=rev(l1);
+        l2=rev(l2);
+        ListNode tmp=l1;
+        int c=0;
+        ListNode prev=null;
+        while(l1!=null && l2!=null){
+            int x=(l1.val+l2.val+c);
+            l1.val=x%10;
+            c=x/10;
+            prev=l1;
+            l1=l1.next;
+            l2=l2.next;
+
+        }
+        if(l1==null){
+            prev.next=l2;
+            l1=l2;
+        }
+        while(l1!=null){
+            int x=(l1.val+c);
+            l1.val=x%10;
+            c=x/10;
+            prev=l1;
+            l1=l1.next;
+        }
+        if(c!=0) prev.next=new ListNode(1);
+        return rev(tmp);
+    }
+}
