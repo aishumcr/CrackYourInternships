@@ -1,0 +1,31 @@
+//level order traversal in reverse order.
+
+
+
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> ans=new ArrayList<>();
+        List<TreeNode> q=new ArrayList<>();
+        if(root==null) return ans;
+        q.add(root);
+        int s=q.size();
+        while(true){
+             s=q.size();
+            if(s==0) break;
+            List<Integer> data=new ArrayList<>();
+            while(s>0){
+                TreeNode x=q.remove(0);
+                data.add(x.val);
+                if(x.left!=null) q.add(x.left);
+                if(x.right!=null) q.add(x.right);
+                s-=1;
+            }  
+             ans.add(data);
+            }
+          Collections.reverse(ans);
+          return ans;
+        
+      
+        
+    }
+}
