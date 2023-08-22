@@ -1,0 +1,30 @@
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        ans=[]
+        q=[]
+        if root==None:
+            return ans
+        q.append(root)
+        level=0
+        while(1):
+            s=len(q)
+            data=[]
+            if s==0:
+                return ans
+            level+=1
+            while s:
+                x=q.pop(0)
+                data.append(x.val)
+                if x.left!=None:
+                    q.append(x.left)
+                if x.right!=None:
+                    q.append(x.right)
+
+                s-=1
+            if level%2==0:
+                data=data[::-1]  
+                ans.append(data)
+            else:
+                ans.append(data)
+        return ans
+                
