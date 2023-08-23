@@ -33,3 +33,22 @@ int sum = 0; // Initialised Sum
         return sum;
     }
 };
+
+
+
+class Solution {
+    int sum=0;
+    int inorder(TreeNode root,int low,int high){
+        if(root==null) return 0;
+        inorder(root.left,low,high);
+        if(root.val>=low && root.val<=high) sum+=root.val;
+        inorder(root.right,low,high);
+        return sum;
+    }
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root==null) return 0;
+        return inorder(root,low,high);
+       
+
+    }
+}
