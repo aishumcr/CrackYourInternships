@@ -1,0 +1,31 @@
+symmetric key so left tree right child is right child left subtree.
+
+class Solution {
+    public boolean check(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null)
+            return true;
+        if (root1 == null || root2 == null)
+            return false;
+        if (root1.val == root2.val)
+            return check(root1.left, root2.right) && check(root1.right, root2.left);
+        return false;
+    }
+    
+    public boolean isSymmetric(TreeNode root) {
+        return check(root.left, root.right);
+    }
+}
+
+
+class Solution {
+    private boolean isIdentical(TreeNode root,TreeNode root2){
+        if(root==null && root2==null) return true;
+        if(root==null || root2==null) return false;
+        if(root.val==root2.val) 
+            return isIdentical(root.left,root2.right) &&  isIdentical(root.right,root2.left);
+        return false;
+    } 
+    public boolean isSymmetric(TreeNode root) {
+         return isIdentical(root.left,root.right);
+    }
+}
