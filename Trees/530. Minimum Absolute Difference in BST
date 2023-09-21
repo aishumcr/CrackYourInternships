@@ -8,8 +8,8 @@ class Solution {
     public void elements(TreeNode root){
         if(root==null) 
             arr.add(0);
-        arr.add(root.val);
         if(root.left!=null) elements(root.left);
+         arr.add(root.val);
         if(root.right!=null) elements(root.right);
     }
     public int getMinimumDifference(TreeNode root) {
@@ -21,14 +21,10 @@ class Solution {
         }
         elements(root);
         int minv=Integer.MAX_VALUE;
-        int diff=0;
-        //System.out.println(arr);
+        //Collections.sort(arr);
         for(int i=0;i<arr.size()-1;i++){
-            for(int j=i+1;j<arr.size();j++){
-                diff=Math.abs(arr.get(i)-arr.get(j));
-                minv=Math.min(minv,diff);
-            }
+            minv=Math.min(minv,arr.get(i+1)-arr.get(i));
         }
-        return minv;
+  return minv;
     }
 }
