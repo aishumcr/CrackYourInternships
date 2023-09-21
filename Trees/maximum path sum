@@ -40,3 +40,34 @@ class TUF {
 
     }
 }
+
+class Solution
+{
+    int ans=Integer.MIN_VALUE;
+    public int maxpath(Node node){
+        if(node==null) return 0;
+        int l=Math.max(0,maxpath(node.left));
+        int r=Math.max(0,maxpath(node.right));
+        int curr=l+r+node.data;
+        ans=Math.max(ans,curr);
+        return Math.max(l,r)+node.data;
+    }
+    //Function to return maximum path sum from any node in a tree.
+    int findMaxSum(Node node)
+    {
+        maxpath(node);
+        return ans;
+        //your code goes here
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
