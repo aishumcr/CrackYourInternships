@@ -1,0 +1,41 @@
+// class to create nodes
+import java.util.*;
+class Node {
+  int key;
+  Node left, right;
+
+  public Node(int item) {
+  key = item;
+  left = right = null;
+  }
+}
+
+class BinaryTree {
+  
+    public static void Inorder(Node root){
+        if(root==null) return ;
+        Inorder(root.left);
+        System.out.println(root.key+" ");
+        Inorder(root.right);
+    }
+  // Traverse tree
+  public static Node insert(){
+    Node root=null;
+    Scanner sc=new Scanner(System.in);
+    int data=sc.nextInt();
+    if(data==-1) return null;
+    root=new  Node(data);
+    System.out.println("enter left for "+data+": ");
+    root.left=insert();
+    System.out.println("enter right for "+data+": ");
+    root.right=insert();
+    return root;
+  }
+
+  public static void main(String[] args) {
+
+    // create an object of BinaryTree
+    Node root=insert();
+    Inorder(root);
+  }
+}
