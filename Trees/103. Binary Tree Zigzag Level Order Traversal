@@ -26,5 +26,53 @@ class Solution:
                 ans.append(data)
             else:
                 ans.append(data)
-        return ans
+        return and
                 
+///java code...
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root == null) {
+            return ans;
+        }
+        q.add(root);
+        int level = 0;
+        while (true) {
+            int s = q.size();
+            List<Integer> data = new ArrayList<>();
+            if (s == 0) {
+                return ans;
+            }
+            level += 1;
+            while (s > 0) {
+                TreeNode x = q.poll();
+                data.add(x.val);
+                if (x.left != null) {
+                    q.add(x.left);
+                }
+                if (x.right != null) {
+                    q.add(x.right);
+                }
+                s -= 1;
+            }
+            if (level % 2 == 0) {
+                Collections.reverse(data);
+                ans.add(data);
+            } else {
+                ans.add(data);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
