@@ -1,0 +1,71 @@
+// Java program to demonstrate
+// insert operation in binary
+// search tree
+
+import java.util.*;
+
+public class BinarySearchTree {
+
+	// Class containing left
+	// and right child of current node
+	// and key value
+	class Node {
+		int key;
+		Node left, right;
+
+		public Node(int item)
+		{
+			key = item;
+			left = right = null;
+		}
+	}
+
+	// Root of BST
+    Node root=null;
+
+     Node insertRec(Node root, int key)
+	{
+		// If the tree is empty,
+		// return a new node
+		if (root == null) {
+			root = new Node(key);
+			return root;
+		}
+
+		// Otherwise, recur down the tree
+		else if (key < root.key)
+			root.left = insertRec(root.left, key);
+		else if (key > root.key)
+			root.right = insertRec(root.right, key);
+
+		// Return the (unchanged) node pointer
+		return root;
+	}
+
+
+	void inorderRec(Node root)
+	{
+		if (root != null) {
+			inorderRec(root.left);
+			System.out.print(root.key + " ");
+			inorderRec(root.right);
+		}
+	}
+
+	// Driver Code
+	public static void main(String[] args)
+	{
+	BinarySearchTree tree = new BinarySearchTree();
+	Scanner sc=new Scanner(System.in);
+	Node root=null;
+	int n=sc.nextInt();
+	for(int i=0;i<n;i++){
+	   root=tree.insertRec(root,sc.nextInt());
+	}
+
+		// Print inorder traversal of the BST
+		tree.inorderRec(root);
+	}
+}
+
+// This code is contributed by Ankur Narain Verma
