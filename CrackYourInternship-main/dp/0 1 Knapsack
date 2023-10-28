@@ -1,0 +1,135 @@
+0 1 Knapsack
+
+//1 .RECURSION SOLUTION..
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution{
+    public static int recur(int ind,int W ,int[] wt,int[] val){
+        if(ind==0){
+            if(wt[0]<=W) return val[0];
+            else return 0;
+        }
+        int notTake=recur(ind-1,W,wt,val);
+        int take=Integer.MIN_VALUE;
+        if(wt[ind]<=W) take=val[ind]+recur(ind-1,W-wt[ind],wt,val);
+        return Math.max(notTake,take);
+    }
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+
+            /* Your class should be named Solution
+            * Don't write main().
+            * Don't read input, it is passed as function argument.
+            * Change in the given tree itself.
+            * No need to return or print the output.
+            * Taking input and printing output is handled automatically.
+            */
+        return recur(weight.length-1,maxWeight,weight,value);
+        
+    }
+}
+
+2.MEMOIZATION APPROACH..
+
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution{
+    public static int recur(int ind,int W ,int[] wt,int[] val,int[][] dp){
+        if(ind==0){
+            if(wt[0]<=W) return val[0];
+            else return 0;
+        }
+        if(dp[ind][W]!=-1) return dp[ind][W];
+        int notTake=recur(ind-1,W,wt,val,dp);
+        int take=Integer.MIN_VALUE;
+        if(wt[ind]<=W) take=val[ind]+recur(ind-1,W-wt[ind],wt,val,dp);
+        return dp[ind][W]=Math.max(notTake,take);
+    }
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+
+            /* Your class should be named Solution
+            * Don't write main().
+            * Don't read input, it is passed as function argument.
+            * Change in the given tree itself.
+            * No need to return or print the output.
+            * Taking input and printing output is handled automatically.
+            */
+       
+        int[][] dp=new int[n][maxWeight+1];
+        for(int[] row:dp) Arrays.fill(row,-1);
+        return recur(n-1,maxWeight,weight,value,dp);
+
+    }
+}
+
+
+3..DP SOLUTION..
+
+
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution{
+    
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+
+            /* Your class should be named Solution
+            * Don't write main().
+            * Don't read input, it is passed as function argument.
+            * Change in the given tree itself.
+            * No need to return or print the output.
+            * Taking input and printing output is handled automatically.
+            */
+       
+        int[][] dp=new int[n][maxWeight+1];
+        for(int i=weight[0];i<=maxWeight;i++) dp[0][i]=value[0];
+        for(int ind=1;ind<n;ind++){
+            for(int W=0;W<=maxWeight;W++){
+                int notTake=dp[ind-1][W];
+                int take=Integer.MIN_VALUE;
+                if(weight[ind]<=W) take=value[ind]+dp[ind-1][W-weight[ind]];
+                dp[ind][W]=Math.max(notTake,take);
+            }
+        }
+        return dp[n-1][maxWeight];
+       
+    }
+}
+
+4.SPACE OPTIMIZATION..
+
+
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution{
+    
+    static int knapsack(int[] weight, int[] value, int n, int maxWeight) {
+
+            /* Your class should be named Solution
+            * Don't write main().
+            * Don't read input, it is passed as function argument.
+            * Change in the given tree itself.
+            * No need to return or print the output.
+            * Taking input and printing output is handled automatically.
+            */
+       
+        int[]prev=new int[maxWeight+1];
+        for(int i=weight[0];i<=maxWeight;i++) prev[i]=value[0];
+        for(int ind=1;ind<n;ind++){
+            for(int W=maxWeight;W>=0;W--){
+                int notTake=prev[W];
+                int take=Integer.MIN_VALUE;
+                if(weight[ind]<=W) take=value[ind]+prev[W-weight[ind]];
+                prev[W]=Math.max(notTake,take);
+            }
+        }
+        return prev[maxWeight];
+       
+    }
+} 
