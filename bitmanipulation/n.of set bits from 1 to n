@@ -1,0 +1,29 @@
+//User function Template for Java
+
+class Solution{
+    public static int soltii2(int n){
+        int x=0;
+        while((1<<x)<=n){
+           x++; 
+        }
+        return x-1;
+    }
+    public static int solution(int n){
+        if(n==0){
+            return 0;
+        }
+        int x = soltii2(n);
+        int x1=(1<<(x-1))*x ;
+        int rems = n-(1<<x)+1;
+        int rest= n- (1<<x);
+        int ans = x1+rems + solution(rest);
+        return ans;
+        
+    }
+    //Function to return sum of count of set bits in the integers from 1 to n.
+    public static int countSetBits(int n){
+        return solution(n);
+     // Your code here
+        
+    }
+}
