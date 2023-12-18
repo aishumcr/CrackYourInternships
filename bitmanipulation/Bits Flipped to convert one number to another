@@ -1,0 +1,19 @@
+//User function Template for Java
+
+class Solution{
+    
+    // Function to find number of bits needed to be flipped to convert A to B
+    public static int countBitsFlip(int a, int b){
+        int xa = a^b;
+        int c=0;
+        while(xa!=0){
+            xa=xa&(xa-1);
+            c+=1;
+        }
+        return c;
+        // Your code here
+        
+    }
+    
+    
+}
