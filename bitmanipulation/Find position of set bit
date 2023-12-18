@@ -1,0 +1,20 @@
+
+
+//User function Template for Java
+
+class Solution {
+    static boolean isPower(int n){
+        return (n>0 && ((n & (n-1))==0)) ? true : false;
+    }
+    static int findPosition(int N) {
+        int r=0;
+      if(!isPower(N)){
+          return -1;
+      }
+    if(((N)&(N-1))==0)
+    {
+            r=(int) (Math.log(N) / Math.log(2));
+    }
+    return r+1;
+    }
+};
