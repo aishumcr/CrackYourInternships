@@ -1,0 +1,48 @@
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+
+Return the kth positive integer that is missing from this array.
+
+ 
+
+Example 1:
+
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+Example 2:
+
+Input: arr = [1,2,3,4], k = 2
+Output: 6
+Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
+
+
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        ArrayList<Integer> a=new ArrayList<>();
+        int i=1,j=0;
+        while(j<arr.length){
+            if(i!=arr[j]){
+               a.add(i);
+            }
+            else{
+                j++;
+            }
+            i++;
+        }
+        //System.out.print(a);
+        int last=0;
+         if (a.size() < k) {
+            int l=a.size();
+            k=k-l;
+            last=arr[arr.length-1];
+            if(k+last==arr[arr.length-1]) return k+last+1;
+            return k+last;
+        }
+
+        return a.get(k-1);
+    }
+}
+
+here we add elements which are not there to list.
+if k is less than size of list we return element, else we take how many elements that size of list is less than k and take last elemnt from array and add that 
+element to size of list is less than k .
