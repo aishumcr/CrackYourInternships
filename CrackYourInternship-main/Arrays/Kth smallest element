@@ -1,0 +1,32 @@
+Given an array arr[] and an integer K where K is smaller than size of array, 
+the task is to find the Kth smallest element in the given array. It is given that all array elements are distinct.
+
+SOLUTION ::
+
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        //Your code here
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        // Step 1: Create a max heap priority queue with reverse order comparator
+        // This will help in maintaining the k smallest elements efficiently
+
+        for(int i=0; i < k; i++){
+            pq.add(arr[i]);
+        }
+        // Step 2: Add the first k elements of the array to the priority queue
+
+        for(int i=k; i < arr.length; i++){
+            if(arr[i] < pq.peek()){
+                pq.remove();
+                pq.add(arr[i]);
+            }
+        }
+        // Step 3: Iterate over the remaining elements in the array
+        // If the current element is smaller than the maximum element in the priority queue,
+        // remove the maximum element and add the current element to maintain k smallest elements
+
+        return pq.peek();
+        // Step 4: The maximum element in the priority queue at this point is the kth smallest element
+    } 
+}
