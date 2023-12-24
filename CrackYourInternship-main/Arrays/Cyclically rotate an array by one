@@ -1,0 +1,19 @@
+Given an array, rotate the array by one position in clock-wise direction.
+
+class Compute {
+    public void reverse(int arr[],int i,int n){
+        int tmp;
+        if(i>n) return ;
+        tmp=arr[i];
+        arr[i]=arr[n];
+        arr[n]=tmp;
+        reverse(arr,i+1,n-1);
+        
+    }
+    
+    public void rotate(int arr[], int n)
+    {
+      reverse(arr,0,n-2);
+      reverse(arr,0,n-1);
+    }
+}
