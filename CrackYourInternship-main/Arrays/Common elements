@@ -1,0 +1,59 @@
+Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.
+Note: can you take care of the duplicates without using any additional Data Structure?
+
+
+
+class Solution
+{
+    ArrayList<Integer> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) 
+    {
+       
+       HashMap<Integer,Integer> hm1=new HashMap<>();
+        HashMap<Integer,Integer> hm2=new HashMap<>();
+         HashMap<Integer,Integer> hm3=new HashMap<>();
+       
+       HashSet<Integer> hs=new LinkedHashSet<>();
+       for(int i=0;i<n1;i++){
+          hm1.put(A[i],hm1.getOrDefault(A[i],0)+1);
+       }
+        for(int i=0;i<n2;i++){
+          hm2.put(B[i],hm2.getOrDefault(B[i],0)+1);
+       }
+        for(int i=0;i<n3;i++){
+          hm3.put(C[i],hm3.getOrDefault(C[i],0)+1);
+       }
+       for(int i=0;i<n1;i++){
+           if(hm1.get(A[i])!=null && hm2.get(A[i])!=null && hm3.get(A[i])!=null)
+            hs.add(A[i]);
+       }
+       
+       ArrayList<Integer> arr=new ArrayList<>(hs);
+       //Collections.sort(arr);
+       return arr;
+    }
+}
+
+class Solution
+{
+    ArrayList<Integer> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) 
+    {
+       
+      
+       HashSet<Integer> hs=new HashSet<>();
+       int i=0,j=0,k=0;
+       while(i<n1 && j<n2 && k<n3){
+           if(A[i]==B[j]&& B[j]==C[k]) {
+               hs.add(A[i]);
+               i+=1;
+               j+=1;
+               k+=1;
+           }
+           else if(A[i]<B[j]) i+=1;
+           else if(B[j]<C[k]) j+=1;
+           else k+=1;
+       }
+       ArrayList<Integer> arr=new ArrayList<>(hs);
+       Collections.sort(arr);
+       return arr;
+    }
+}
