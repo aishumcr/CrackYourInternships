@@ -1,0 +1,56 @@
+A number N is represented in Linked List such that each digit corresponds to a node in linked list. You need to add 1 to it.
+
+Example 1:
+
+Input:
+LinkedList: 4->5->6
+Output: 457
+Explanation: 4->5->6 represents 456 and when 1 is added it becomes 457. 
+
+
+class Solution {
+    public static Node addOne(Node head) {
+        if (head == null)
+            return new Node(1); // Create a new node with value 1 if the list is empty
+        
+        // Reverse the linked list
+        head = reverseLinkedList(head);
+
+        // Traverse the linked list and add 1 to the first non-9 node from the right
+        Node current = head;
+        Node prev = null;
+        while (current != null) {
+            if (current.data != 9) {
+                current.data += 1;
+                break;
+            }
+            current.data = 0;
+            prev = current;
+            current = current.next;
+        }
+        
+        // If all nodes were 9, add a new node with value 1 at the end
+        if (current == null && prev != null) {
+            prev.next = new Node(1);
+        }
+        
+        // Reverse the linked list again to restore the original order
+        head = reverseLinkedList(head);
+
+        return head;
+    }
+    
+    // Helper function to reverse a linked list
+    private static Node reverseLinkedList(Node head) {
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+}
