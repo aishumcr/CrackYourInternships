@@ -1,0 +1,53 @@
+Given a singly linked list of N nodes. Find the first node of the loop if the linked list has a loop. 
+If a loop is present return the node data of the first node of the loop else return -1.
+
+
+
+class Solution {
+    //Function to find first node if the linked list has a loop.
+    public static int findFirstNode(Node head){
+        Node slow=head,fast=head;
+        if(head.next==head)return head.data;
+        slow = slow.next;
+        fast = fast.next.next;
+        while(fast!=null && fast.next!=null){
+            if(slow==fast){
+                break;
+            }
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        if(slow!=fast) return -1;
+        slow=head;
+        while(slow!=fast){
+           slow=slow.next;
+           fast=fast.next;
+        }
+        return slow.data;
+    }
+}
+
+
+//easy solution:::
+
+
+class Solution {
+    //Function to find first node if the linked list has a loop.
+    public static int findFirstNode(Node head){
+        Node prev=null,curr=head;
+        Map<Node,Node>hm=new HashMap<>();
+        while(curr!=null){
+            prev=curr;
+            curr=curr.next;
+            if(!hm.containsKey(prev)){
+                hm.put(prev,curr);
+            }
+            else{
+                if(hm.get(prev)==curr){
+                    return prev.data;
+                }
+            }
+        }
+        return -1;
+    }
+}
