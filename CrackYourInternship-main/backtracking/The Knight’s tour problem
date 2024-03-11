@@ -1,0 +1,41 @@
+
+import java.util.*;
+public class Main
+{
+    public static boolean isSafe(int x,int y,int[][] visited,int n){
+        return (x<n && y<n && x>=0 && y>=0 && visited[x][y]==-1);
+    }
+    public static boolean solve(int xd,int yd,int move,int[]x,int[] y,int[][] visited,int n){
+        if(move==n*n) return true;
+        
+        for(int k=0;k<8;k++){
+            int next_x=xd+x[k];
+            int next_y=yd+y[k];
+            if(isSafe(next_x,next_y,visited,n)){
+                visited[next_x][next_y]=move;
+                if(solve(next_x,next_y,move+1,x,y,visited,n)==true) return true;
+                visited[next_x][next_y]=-1;
+            }
+        }
+        return false;
+    }
+    
+	public static void main(String[] args) {
+		int[][] visited=new int[8][8];
+		int[] x = { 2, 1, -1, -2, -2, -1, 1, 2 }; 
+        int[] y = { 1, 2, 2, 1, -1, -2, -2, -1 }; 
+		int move=1;
+		for(int[] a:visited){
+		    Arrays.fill(a,-1);
+		}
+		visited[0][0]=0;
+		if(solve(0,0,move,x,y,visited,8)==true){
+		   for(int i=0;i<8;i++){
+		       for(int j=0;j<8;j++){
+		           System.out.print(visited[i][j]+" ");
+		       }
+		       System.out.println();
+		   } 
+		}
+	}
+}
